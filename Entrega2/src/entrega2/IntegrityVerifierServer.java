@@ -1,7 +1,6 @@
 package entrega2;
 
-import java.net.ServerSocket;
-
+import java.net.*;
 import java.io.*;
 import javax.swing.*;
 import javax.net.*;

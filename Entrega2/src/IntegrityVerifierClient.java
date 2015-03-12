@@ -1,3 +1,5 @@
+
+
 import java.io.*;
 import java.net.Socket;
 
@@ -5,7 +7,7 @@ import javax.swing.*;
 import javax.net.*;
 
 public class IntegrityVerifierClient {
-	// Constructor que abre una conexión Socket para enviar mensaje/MAC al
+	// Constructor que abre una conexiï¿½n Socket para enviar mensaje/MAC al
 	// servidor
 	public IntegrityVerifierClient() {
 		try {
@@ -19,10 +21,10 @@ public class IntegrityVerifierClient {
 			
 			String mensaje = JOptionPane.showInputDialog(null,
 					"Introduzca su mensaje:");
-			// Envío del mensaje al servidor
+			// Envï¿½o del mensaje al servidor
 			
 			output.println(mensaje);
-			// Habría que calcular el correspondiente MAC con la clave
+			// Habrï¿½a que calcular el correspondiente MAC con la clave
 			
 			// Calcular aqui la MAC
 			
@@ -30,7 +32,7 @@ public class IntegrityVerifierClient {
 			
 			// compartida por servidor/cliente
 			output.println(macdelMensaje);
-			// Importante para que el mensaje se envíe
+			// Importante para que el mensaje se envï¿½e
 			output.flush();
 			// Crea un objeto BufferedReader para leer la respuesta del servidor
 			BufferedReader input = new BufferedReader(new InputStreamReader(
@@ -53,7 +55,7 @@ public class IntegrityVerifierClient {
 		}
 	}
 
-	// ejecución del cliente de verificación de la integridad
+	// ejecuciï¿½n del cliente de verificaciï¿½n de la integridad
 	public static void main(String args[]) {
 		new IntegrityVerifierClient();
 	}

@@ -1,4 +1,4 @@
-package entrega2;
+
 
 import java.net.*;
 import java.io.*;
@@ -13,12 +13,12 @@ public class IntegrityVerifierServer {
 		// ServerSocketFactory para construir los ServerSockets
 		ServerSocketFactory socketFactory = (ServerSocketFactory) ServerSocketFactory
 				.getDefault();
-		// Creación de un objeto ServerSocket escuchando peticiones en el puerto
+		// Creaciï¿½n de un objeto ServerSocket escuchando peticiones en el puerto
 		// 7070
 		serverSocket = (ServerSocket) socketFactory.createServerSocket(7070);
 	}
 
-	// Ejecución del servidor para escuchar peticiones de los clientes
+	// Ejecuciï¿½n del servidor para escuchar peticiones de los clientes
 	private void runServer() {
 		while (true) {
 			// Espera las peticiones del cliente para comprobar mensaje/MAC
@@ -33,8 +33,8 @@ public class IntegrityVerifierServer {
 						socket.getOutputStream()));
 				// Se lee del cliente el mensaje y el macdelMensajeEnviado
 				String mensaje = input.readLine();
-				// A continuación habría que calcular el mac del MensajeEnviado
-				// que podría ser
+				// A continuaciï¿½n habrï¿½a que calcular el mac del MensajeEnviado
+				// que podrï¿½a ser
 				String macdelMensajeEnviado = input.readLine();
 				// mac del MensajeCalculado
 

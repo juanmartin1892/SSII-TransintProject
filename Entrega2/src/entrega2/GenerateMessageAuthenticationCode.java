@@ -8,47 +8,48 @@ import javax.crypto.KeyGenerator;
 import javax.crypto.Mac;
 import javax.crypto.SecretKey;
 
+
+
 public class GenerateMessageAuthenticationCode {
+	
+	public static String toHexadecimal(byte[] digest){
+        String hash = "";
+        for(byte aux : digest) {
+            int b = aux & 0xff;
+            if (Integer.toHexString(b).length() == 1) hash += "0";
+            hash += Integer.toHexString(b);
+        }
+        return hash;
+    }
 
-	public static byte[] calculateMac(String mensaje,SecretKey key) {
-		byte[] digest = null;
-		try {
+	public static String calculateMac(String cs, SecretKey key)
+	
+		
+	
+			throws NoSuchAlgorithmException, InvalidKeyException, IllegalStateException, UnsupportedEncodingException {
+		
+		Mac mac1 = Mac.getInstance("HmacMD5");
 
-			// get a key generator for the HMAC-MD5 keyed-hashing algorithm
-			//KeyGenerator keyGen = KeyGenerator.getInstance("HmacMD5");
+		mac1.init(key);
 
-			// generate a key from the generator estoy hay que genrarlo fuera del metodo y pasarselo por parametros
-			//SecretKey key = keyGen.generateKey();
+		mac1.update(cs.getBytes());
 
-			// create a MAC and initialize with the above key
-			Mac mac = Mac.getInstance(key.getAlgorithm());
-			mac.init(key);
+		byte[] b = mac1.doFinal();
 
-			String message = mensaje;
-
-			// get the string as UTF-8 bytes
-			byte[] b = message.getBytes("UTF-8");
-
-			// create a digest from the byte array
-			digest = mac.doFinal(b);
-
-
-		}
-
-		catch (NoSuchAlgorithmException e) {
-			System.out.println("No Such Algorithm:" + e.getMessage());
-		} catch (UnsupportedEncodingException e) {
-			System.out.println("Unsupported Encoding:" + e.getMessage());
-		} catch (InvalidKeyException e) {
-			System.out.println("Invalid Key:" + e.getMessage());
-		}
-		return digest;
+		return toHexadecimal(b);
 
 	}
-	public static void main (String[]args) throws NoSuchAlgorithmException{
+
+	public static void main(String[] args) throws NoSuchAlgorithmException,
+			InvalidKeyException, UnsupportedEncodingException {
+		
 		KeyGenerator keyGen = KeyGenerator.getInstance("HmacMD5");
 		SecretKey key = keyGen.generateKey();
+
+		System.out.print(calculateMac("Hola", key) + "\n");
 		System.out.print(calculateMac("Hola", key));
 	}
+
+	
 
 }

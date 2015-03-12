@@ -1,25 +1,30 @@
 package entrega2;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.net.ServerSocket;
+import java.net.Socket;
 
-import java.net.*;
-import java.io.*;
-import javax.swing.*;
-import javax.net.*;
+import javax.net.ServerSocketFactory;
 
 public class IntegrityVerifierServer {
 	private ServerSocket serverSocket;
 
 	// Constructor del Servidor
+	// Constructor del Servidor
 	public IntegrityVerifierServer() throws Exception {
 		// ServerSocketFactory para construir los ServerSockets
 		ServerSocketFactory socketFactory = (ServerSocketFactory) ServerSocketFactory
 				.getDefault();
-		// Creaci�n de un objeto ServerSocket escuchando peticiones en el puerto
+		// Creación de un objeto ServerSocket escuchando peticiones en el puerto
 		// 7070
 		serverSocket = (ServerSocket) socketFactory.createServerSocket(7070);
 	}
 
-	// Ejecuci�n del servidor para escuchar peticiones de los clientes
+	// Ejecución del servidor para escuchar peticiones de los clientes
 	private void runServer() {
 		while (true) {
 			// Espera las peticiones del cliente para comprobar mensaje/MAC
@@ -34,11 +39,16 @@ public class IntegrityVerifierServer {
 						socket.getOutputStream()));
 				// Se lee del cliente el mensaje y el macdelMensajeEnviado
 				String mensaje = input.readLine();
-				// A continuaci�n habr�a que calcular el mac del MensajeEnviado
-				// que podr�a ser
+				// A continuación habría que calcular el mac del MensajeEnviado
+				// que podría ser
 				String macdelMensajeEnviado = input.readLine();
 				// mac del MensajeCalculado
-
+				
+				
+				
+				
+				
+				
 				if (macMensajeEnviado.equals(macdelMensajeCalculado)) {
 					output.println("Mensaje enviado integro ");
 				} else {
@@ -51,5 +61,10 @@ public class IntegrityVerifierServer {
 				ioException.printStackTrace();
 			}
 		}
+	}
+
+	public static void main(String args[]) throws Exception {
+		IntegrityVerifierServer server = new IntegrityVerifierServer();
+		server.runServer();
 	}
 }

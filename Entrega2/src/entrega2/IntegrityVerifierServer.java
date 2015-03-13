@@ -7,6 +7,8 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 
 import javax.net.ServerSocketFactory;
 
@@ -25,7 +27,7 @@ public class IntegrityVerifierServer {
 	}
 
 	// Ejecución del servidor para escuchar peticiones de los clientes
-	private void runServer() {
+	private void runServer() throws InvalidKeyException, NoSuchAlgorithmException, IllegalStateException {
 		while (true) {
 			// Espera las peticiones del cliente para comprobar mensaje/MAC
 			try {
@@ -46,10 +48,10 @@ public class IntegrityVerifierServer {
 				
 				
 				
+				String macdelMensajeCalculado = entrega2.GenerateMessageAuthenticationCode.calculateMac(mensaje);
 				
 				
-				
-				if (macMensajeEnviado.equals(macdelMensajeCalculado)) {
+				if (macdelMensajeEnviado.equals(macdelMensajeCalculado)) {
 					output.println("Mensaje enviado integro ");
 				} else {
 					output.println("Mensaje enviado no integro.");

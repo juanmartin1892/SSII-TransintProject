@@ -1,22 +1,24 @@
 package entrega2;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.net.Socket;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 
-import javax.swing.*;
-import javax.crypto.SecretKey;
-import javax.crypto.spec.SecretKeySpec;
-import javax.net.*;
-
-import entrega2.GenerateMessageAuthenticationCode;
+import javax.net.SocketFactory;
+import javax.swing.JOptionPane;
 
 public class IntegrityVerifierClient {
 	// Constructor que abre una conexi�n Socket para enviar mensaje/MAC al
 	// servidor
 	public IntegrityVerifierClient() throws InvalidKeyException,
 			NoSuchAlgorithmException, IllegalStateException {
+		
+		String macdelMensaje = "";
 		
 		try {
 			SocketFactory socketFactory = (SocketFactory) SocketFactory
@@ -35,6 +37,7 @@ public class IntegrityVerifierClient {
 			
 			// Habría que calcular el correspondiente MAC con la clave
 			// compartida por servidor/cliente
+			macdelMensaje = entrega2.GenerateMessageAuthenticationCode.calculateMac(mensaje);
 			output.println(macdelMensaje);
 			
 			// Importante para que el mensaje se envíe
